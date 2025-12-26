@@ -1,5 +1,5 @@
 # flask app url routing
-from flask import Flask,render_template,request,redirect,url_for
+from flask import Flask,render_template,request,redirect,url_for,jsonify
 # render_template is used when there is get request
 # request is used  
 
@@ -42,6 +42,12 @@ def form():
         return  redirect(url_for(res,score=average_marks))
         
         # return render_template('form.html',score=average_marks)
+@app.route("/api",method=['POST'])
+def calculate_sum():
+    data=request.get_json()
+    a_val=float(dict(data)['a'])
+    b_val=float(dict(data)['b'])
+    return jsonify(a_val+b_val)
 
     
 if __name__=="__main__":
