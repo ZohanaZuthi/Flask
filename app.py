@@ -9,7 +9,7 @@ app=Flask(__name__)
     
 @app.route("/",methods=["GET"])
 def welcome():
-    return "Welcome to my flask tutorial"
+    return render_template('home.html',content=['happy','sad','not sad'])
 
 @app.route("/index",methods=['GET'])
 def index():
@@ -42,7 +42,7 @@ def form():
         return  redirect(url_for(res,score=average_marks))
         
         # return render_template('form.html',score=average_marks)
-@app.route("/api",method=['POST'])
+@app.route("/api",methods=['POST'])
 def calculate_sum():
     data=request.get_json()
     a_val=float(dict(data)['a'])
